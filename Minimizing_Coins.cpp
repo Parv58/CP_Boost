@@ -17,22 +17,21 @@ const int MOD = 1e9 + 7;
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-        int n,x;
-        cin>>n>>x;
-        vector<int>v(n);
-        vector<int>dp(x+1,INF);
-        dp[0]=0;
-        for(int i=0; i<n; i++){
-            cin>>v[i];
+    int n,x;
+    cin>>n>>x;
+    vector<int>v(n);
+    for(int i=0; i<n; i++){
+        cin>>v[i];
+    }
+    vector<int>dp(x+1,INT_MAX);
+    dp[0]=0;
+    for(int i=1; i<x+1; i++){
+        for(int j=n-1; j>=0; j--){
+            if( i>=v[j] && dp[i-v[j]]!=INT_MAX) dp[i]=min(dp[i], 1+dp[i-v[j]]);
         }
-        for(int i=1; i<=x; i++){
-            for(int j=0; j<n; j++){
-                if(v[j]<=i && dp[i-v[j]]!=INF)
-                dp[i]=min(dp[i], dp[i-v[j]]+1);
-            }
-        }
-        if(dp[x]==INF) cout<<-1<<endl;
-        else cout<<dp[x]<<endl;
+    }
+
+    dp[x]==INT_MAX?cout<<-1<<endl:cout<<dp[x]<<endl;
 
     
     return 0;
