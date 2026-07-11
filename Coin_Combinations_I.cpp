@@ -28,7 +28,7 @@ int main() {
     for(int i=1; i<x+1; i++){
         for(int j=0; j<n; j++){
             if( i>=v[j]){
-                dp[i]=(dp[i]+dp[i-v[j]]);
+                dp[i]=((dp[i]+dp[i-v[j]]))%MOD;
             }
         }
     }
@@ -38,3 +38,7 @@ int main() {
     return 0;
 }
 
+
+
+/*The main intuition behind this problem is 31st line, this is a must revise question for dp, because deriving this 
+intuition is actually good level*/
